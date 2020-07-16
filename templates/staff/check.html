@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load extras %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    Hello {{teacher.full_name}}
+    <form class="" action="{% url 'staff:success' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" name="button" value = {{teacher.full_name|space_to_us}}>
+        {{button_word}}
+      </button>
+    </form>
+
+    <a href="{% url 'staff:index' %}">back</a>
+  </body>
+</html>
