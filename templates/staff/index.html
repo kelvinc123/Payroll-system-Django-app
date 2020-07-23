@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load extras %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>Teacher page!</h2>
+    <form class="" action="{% url 'staff:check' %}" method="post">
+      {% csrf_token %}
+
+      <select class="teachers_dropdown" name="choice">
+        {% for teacher in teachers_list %}
+          <option value={{teacher.full_name|space_to_us}}>{{teacher.full_name}}</option>
+        {% endfor %}
+      </select>
+
+      <input type="submit" name="submit" value="Enter">
+    </form>
+
+
+  <a href="{% url 'home' %}">back</a>
+  </body>
+</html>
