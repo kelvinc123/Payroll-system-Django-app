@@ -16,7 +16,7 @@ def index(request):
     return render(request, 'staff/index.html', context)
 
 
-checked_in = {}
+checked_in = {} #declare dict {key: value}
 def check(request):
 
     if request.method == "POST":
@@ -44,19 +44,34 @@ def success(request):
     if request.method == "POST":
 
         global checked_in
+        td = None
         full_name = request.POST.get('button').replace("_", " ")
+
+        #query val from DB
         teacher = get_object_or_404(Teacher, full_name = full_name)
 
 
         if teacher.full_name not in checked_in:
             teacher_clock = teacher.teacherclock_set.create(clock_in = timezone.now())
             checked_in[teacher.full_name] = teacher_clock
+
             word = "checked in!"
+            clock_in = checked_in[teacher.full_name].clock_in
+            clock_out = None
         else:
             checked_in[teacher.full_name].clock_out = timezone.now()
             checked_in[teacher.full_name].save()
-            del checked_in[teacher.full_name]
-            word = "checked out!"
+            
+            #accessing check-in and check-out time
+            clock_in = checked_in[teacher.full_name].clock_in
+            clock_out = checked_in[teacher.full_name].clock_out
+            
+            td = clock_out - clock_in
+            #compute the duration of the duration of working hour
 
-        context = {'word':word}
+            del checked_in[teacher.full_name]
+            
+            word = "checked out!"
+        #this value "checked out" is being passed to success.html
+        context = {"word":word, "clock_in": clock_in, "clock_out": clock_out, "duration": td}
         return render(request, 'staff/success.html', context)
