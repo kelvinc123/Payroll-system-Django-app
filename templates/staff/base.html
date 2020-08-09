@@ -3,25 +3,22 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> -->
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-  </head>
+    <link rel="stylesheet" href="{% static 'css/staff/base.css' %}">
+    {% block head_block %}
 
+    {% endblock %}
+  </head>
 
   <body>
 
-    <br><br><br>
-
-    <div class="container text-center mt-5 pt-5 first_logo">
-      <img src="{% static 'images/nelc_logo.png' %}" alt="Img not found!">
+    <div class="container-fluid text-center bg-light pt-1" style="margin-bottom:0">
+      <a href="{% url 'home' %}"><img id="logo_title" class="img-fluid" src="{% static 'images/nelc_logo.png' %}" alt="Can't load image"></a>
     </div>
-    <div class="container text-center pt-3 mt-3">
-      <a class="btn btn-outline-primary btn-lg" href="{% url 'staff:index' %}">Teacher</a>
-      <a class="btn btn-outline-info btn-lg" href="{% url 'admin:index' %}">Admin</a>
-    </div>
+    {% block body_block %}
 
+    {% endblock %}
 
   </body>
 </html>

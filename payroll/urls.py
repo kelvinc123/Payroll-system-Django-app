@@ -22,4 +22,5 @@ urlpatterns = [
     path('help/', views.help, name = "help"),
     path('', views.home, name = "home"),
     path('staff/', include('staff.urls')),
+    path('base/', views.base, name = "base"),
 ]

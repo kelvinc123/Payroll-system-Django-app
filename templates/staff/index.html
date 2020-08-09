@@ -1,25 +1,45 @@
 <!DOCTYPE html>
+{% extends "staff/base.html" %}
+{% load static %}
 {% load extras %}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    {% block title_block %}
     <title></title>
+    <link rel="stylesheet" href="{% static 'css/staff/index.css' %}">
+    {% endblock %}
+
   </head>
   <body>
-    <h2>Teacher page!</h2>
-    <form class="" action="{% url 'staff:check' %}" method="post">
-      {% csrf_token %}
-
-      <select class="teachers_dropdown" name="choice">
-        {% for teacher in teachers_list %}
-          <option value={{teacher.full_name|space_to_us}}>{{teacher.full_name}}</option>
-        {% endfor %}
-      </select>
-
-      <input type="submit" name="submit" value="Enter">
-    </form>
+    {% block body_block %}
 
 
-  <a href="{% url 'home' %}">back</a>
+    <div class="container text-center outer" id="kelvin">
+
+      <h2 class="kel">Teacher page!</h2>
+      <br><br>
+      <form action="{% url 'staff:check' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <select class="teachers_dropdown form-control" name="choice">
+            {% for teacher in teachers_list %}
+              <option value={{teacher.full_name|space_to_us}}>{{teacher.full_name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="container pt-5">
+          <input class="btn btn-primary" type="submit" name="submit" value="Enter">
+        </div>
+      </form>
+      <br><br>
+      <div class="container">
+        <a href="{% url 'home' %}">back</a>
+      </div>
+
+    </div>
+
+
+    {% endblock %}
   </body>
 </html>
