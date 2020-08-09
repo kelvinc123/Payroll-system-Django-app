@@ -18,7 +18,7 @@ from django.urls import path, include
 from staff import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name = "admin"),
     path('help/', views.help, name = "help"),
     path('', views.home, name = "home"),
     path('staff/', include('staff.urls')),

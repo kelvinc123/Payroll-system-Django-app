@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from staff.models import Teacher
+from staff.models import Teacher, TeacherClock
 from django.utils import timezone
 from datetime import datetime
 
@@ -16,7 +16,6 @@ def index(request):
     return render(request, 'staff/index.html', context)
 
 
-checked_in = {} #declare dict {key: value}
 def check(request):
 
     if request.method == "POST":
@@ -25,9 +24,8 @@ def check(request):
         full_name = request.POST.get('choice').replace("_", " ")
         teacher = get_object_or_404(Teacher, full_name = full_name)
 
-        if teacher.full_name not in checked_in:
+        if len(TeacherClock.objects.filter(teacher = teacher, clock_out = None)) == 0:
             button_word = "Check in"
-
         else:
             button_word = "Check out"
 
@@ -43,35 +41,25 @@ def success(request):
 
     if request.method == "POST":
 
-        global checked_in
-        td = None
         full_name = request.POST.get('button').replace("_", " ")
 
         #query val from DB
         teacher = get_object_or_404(Teacher, full_name = full_name)
 
-
-        if teacher.full_name not in checked_in:
+        if len(TeacherClock.objects.filter(teacher = teacher, clock_out = None)) == 0:
             teacher_clock = teacher.teacherclock_set.create(clock_in = timezone.now())
-            checked_in[teacher.full_name] = teacher_clock
-
             word = "checked in!"
-            clock_in = checked_in[teacher.full_name].clock_in
+            clock_in = teacher_clock.clock_in
             clock_out = None
+            td = None
         else:
-            checked_in[teacher.full_name].clock_out = timezone.now()
-            checked_in[teacher.full_name].save()
-            
-            #accessing check-in and check-out time
-            clock_in = checked_in[teacher.full_name].clock_in
-            clock_out = checked_in[teacher.full_name].clock_out
-            
-            td = clock_out - clock_in
-            #compute the duration of the duration of working hour
-
-            del checked_in[teacher.full_name]
-            
+            teacher_clock = TeacherClock.objects.get(teacher = teacher, clock_out = None)
+            teacher_clock.clock_out = timezone.now()
+            teacher_clock.save()
             word = "checked out!"
-        #this value "checked out" is being passed to success.html
+            clock_in = teacher_clock.clock_in
+            clock_out = teacher_clock.clock_out
+            td = clock_out - clock_in
+
         context = {"word":word, "clock_in": clock_in, "clock_out": clock_out, "duration": td}
         return render(request, 'staff/success.html', context)
