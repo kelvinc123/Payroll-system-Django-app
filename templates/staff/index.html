@@ -5,8 +5,9 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    {% block title_block %}
+    {% block head_block %}
     <title></title>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/grundschrift" type="text/css"/>
     <link rel="stylesheet" href="{% static 'css/staff/index.css' %}">
     {% endblock %}
 
@@ -15,28 +16,27 @@
     {% block body_block %}
 
 
-    <div class="container text-center outer" id="kelvin">
-
-      <h2 class="kel">Teacher page!</h2>
+    <div class="container text-center outer mt-5" id="kelvin">
+      <!-- <div class="container heading_box"> -->
+      <h1>Teacher page!</h1>
+      <!-- </div> -->
       <br><br>
       <form action="{% url 'staff:check' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-          <select class="teachers_dropdown form-control" name="choice">
-            {% for teacher in teachers_list %}
-              <option value={{teacher.full_name|space_to_us}}>{{teacher.full_name}}</option>
-            {% endfor %}
-          </select>
-        </div>
-        <div class="container pt-5">
-          <input class="btn btn-primary" type="submit" name="submit" value="Enter">
-        </div>
-      </form>
-      <br><br>
-      <div class="container">
-        <a href="{% url 'home' %}">back</a>
-      </div>
 
+        {% csrf_token %}
+        <select class="teachers_dropdown drop_down custom-select" name="choice">
+          {% for teacher in teachers_list %}
+            <option value={{teacher.full_name|space_to_us}}>{{teacher.full_name}}</option>
+          {% endfor %}
+        </select>
+        <!-- <br><br><br><br><br> -->
+        <input class="btn btn-primary mt-5 btn_enter" type="submit" name="submit" value="Enter">
+      </form>
+
+    </div>
+
+    <div class="container text-center">
+      <a class="btn btn-secondary btn_back" href="{% url 'home' %}">Back</a>
     </div>
 
 

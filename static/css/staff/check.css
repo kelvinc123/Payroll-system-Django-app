@@ -1,0 +1,24 @@
+
+.outer{
+  font-family: 'JelleeBold';
+  font-weight: normal;
+  font-style: normal;
+  background-image: url("/static/images/blue_white_trans.png");
+}
+
+
+.outer2{
+  margin-top: 75px;
+}
+
+.btn_check{
+  width: 250px;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.btn_back{
+  margin-top: 20px;
+  width: 250px;
+  height: 40px;
+}

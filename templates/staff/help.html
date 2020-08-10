@@ -1,10 +1,13 @@
 <!DOCTYPE html>
+{% extends "staff/base.html" %}
 {% load static %}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    {% block head_block %}
     <title></title>
-    <link rel="stylesheet" href="{% static 'staff/help.css' %}">
+    <link rel="stylesheet" href="{% static 'css/staff/help.css' %}">
+    {% endblock %}
   </head>
   <body>
     <h1>Help page</h1>

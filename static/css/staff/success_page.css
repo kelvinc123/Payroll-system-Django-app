@@ -1,0 +1,15 @@
+
+.outer{
+  font-family: 'JelleeBold';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  background-image: url("/static/images/blue_white_trans.png");
+}
+
+.btn_home{
+  margin-top: 40px;
+  width: 100px;
+  height: 45px;
+  padding-top: 9px;
+}

@@ -1,13 +1,41 @@
 .outer{
-  background-color: red;
+  height: 410px;
+  width: 480px;
+  border-color: blue;
+  /* border-style: solid; */
+  background-image: url("/static/images/Simple-White-Gradient.jpg");
+  font-family: 'JelleeBold';
+  font-weight: normal;
+  font-style: normal;
 }
 
-#kelvin{
-  background-color: blue;
+h1{
+  padding-top: 55px;
+  font-size: 50px;
 }
 
+.drop_down{
+  margin-top: 30px;
+  margin-bottom: 35px;
+  width: 350px;
+  height: 50px;
+  font-size: 25px;
+  font-style: normal;
+  font-family: 'ProzaLibreRegular';
+  font-weight: normal;
+}
 
-.kel{
-  text-align: left;
-  color: blue;
+.btn_enter{
+  margin-top: 300px;
+  width: 350px;
+  height: 45px;
+}
+
+.btn_back{
+  width: 140px;
+  height: 40px;
+  margin-top: 80px;
+  font-family: 'JelleeBold';
+  font-weight: normal;
+  font-style: normal;
 }

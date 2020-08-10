@@ -29,10 +29,12 @@ def check(request):
 
         if len(TeacherClock.objects.filter(teacher = teacher, clock_out = None)) == 0:
             button_word = "Check in"
+            button_style = "btn btn-success btn_check"
         else:
             button_word = "Check out"
+            button_style = "btn btn-danger btn_check"
 
-        context = {'teacher':teacher, "button_word":button_word}
+        context = {'teacher':teacher, "button_word":button_word, "button_style":button_style}
         return render(request, 'staff/check.html', context)
 
 

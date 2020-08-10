@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 {% extends "staff/base.html" %}
+{% load static %}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    {% block head_block %}
     <title></title>
+    <link rel="stylesheet" href="{% static 'css/staff/success_page.css' %}">
+    {% endblock %}
   </head>
   <body>
     {% block body_block %}
-    Thank you, you have successfully {{word}} <br />
-    Sign in: {{clock_in}} <br />
-    Sign out: {{clock_out}} <br />
-    Time duration: {{duration}} <br />
-    <a href="{% url 'home' %}">home</a>
+    <div class="jumbotron outer">
+      <p>Thank you, you have successfully {{word}}</p>
+      <p>Sign in: {{clock_in}}</p>
+      <p>Sign out: {{clock_out}}</p>
+      <p>Time duration: {{duration}}</p>
+      <a class="btn btn-secondary btn_home" href="{% url 'home' %}">Home</a>
+    </div>
     {% endblock %}
   </body>
 </html>

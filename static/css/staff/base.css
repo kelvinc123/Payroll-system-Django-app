@@ -3,3 +3,16 @@
 #logo_title{
   width: 150px;
 }
+
+@font-face{
+  font-family: JelleeBold;
+  src: url(/static/fonts/Jellee-Roman.otf);
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face{
+  font-family: ProzaLibreRegular;
+  src: url(/static/fonts/ProzaLibre-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
